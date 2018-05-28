@@ -6,7 +6,7 @@ https://hub.docker.com/r/hbrls/cnpmjs/
 
 # Easy
 
-    $ docker pull hbrls/cnpm:0.0.5
+    $ docker pull goodrainapps/cnpm:2.19.4
     $ docker run -d \
                  -p 7001:7001 \
                  -p 7002:7002 \
