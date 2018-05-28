@@ -10,10 +10,10 @@ https://hub.docker.com/r/hbrls/cnpmjs/
     $ docker run -d \
                  -p 7001:7001 \
                  -p 7002:7002 \
-                 -v /path/to/config:/var/app/cnpmjs.org/config \
-                 -v /path/to/customize/README.md:/var/app/cnpmjs.org/docs/web/readme.md \
+                 -v /path/to/config:/app/cnpmjs.org/config \
+                 -v /path/to/customize/README.md:/app/cnpmjs.org/docs/web/readme.md \
                  -v /path/to/storage:/var/www \
-                 --name cnpm hbrls/cnpm:0.0.5
+                 --name cnpm goodrainapps/cnpm:2.19.4
 
 # Reference
 
