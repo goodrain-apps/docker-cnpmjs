@@ -19,9 +19,15 @@ RUN \
 
 WORKDIR ${APPDIR}
 
-RUN npm install  --registry==https://registry.npm.taobao.org
+RUN npm install  --registry==https://registry.npm.taobao.org \
+    && rm -rf /root/.npm
+
+COPY config.js ${APPDIR}/config/config.js
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
 
 EXPOSE 7001 7002
 
 # Entrypoint
-CMD ["/usr/local/bin/node", "/app/cnpmjs.org/dispatch.js"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["start"]
