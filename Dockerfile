@@ -19,9 +19,9 @@ RUN \
 
 WORKDIR ${APPDIR}
 
-RUN npm install
+RUN npm install  --registry==https://registry.npm.taobao.org
 
 EXPOSE 7001 7002
 
 # Entrypoint
-CMD ["/usr/local/bin/node", "/var/app/cnpmjs.org/dispatch.js"]
+CMD ["/usr/local/bin/node", "/app/cnpmjs.org/dispatch.js"]
