@@ -10,23 +10,25 @@ RUN \
   install -o www-data -d /app && \
   mkdir /var/www && chown www-data:www-data -R /var/www
 
-USER www-data
-
 RUN \
   wget -P /tmp https://github.com/cnpm/cnpmjs.org/archive/${CNPMJS_ORG_VERSION}.tar.gz && \
   tar xvzf /tmp/${CNPMJS_ORG_VERSION}.tar.gz -C /app && \
   mv /app/cnpmjs.org-${CNPMJS_ORG_VERSION} ${APPDIR}
 
+COPY config.js ${APPDIR}/config/config.js
+
 WORKDIR ${APPDIR}
 
 RUN npm install  --registry==https://registry.npm.taobao.org \
-    && rm -rf /root/.npm
+    && rm -rf /root/.npm \
+    && chown  www-data /app /var/www  -R
 
-COPY config.js ${APPDIR}/config/config.js
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 
 EXPOSE 7001 7002
+
+USER www-data
 
 # Entrypoint
 ENTRYPOINT ["/docker-entrypoint.sh"]
